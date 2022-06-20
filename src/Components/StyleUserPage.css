@@ -1,0 +1,31 @@
+*,*::before,*::after {
+    box-sizing: border-box;
+  }
+  
+  body{
+    margin: 0;
+    background: linear-gradient(to right, #033e63 30%,#52055c);
+  }
+  .container{
+    display: grid;
+    margin-right: 35rem;
+    margin-top: 2rem;
+    color: rgb(255, 255, 255);
+    padding: 1rem;
+    width: 30rem;
+  }
+ 
+.container  td{
+ justify-content: center;
+ padding: 4rem ;
+ width: fit-content;
+ 
+}
+.container  td:hover{
+    background-color: #0f71ae;
+}
+.container tbody tr td {
+    border: 1px solid rgb(0, 0, 0,.75);
+    font-size: 1rem;
+   }
+
