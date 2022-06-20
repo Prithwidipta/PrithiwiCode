@@ -8,7 +8,7 @@ const [user,setUser]=useState([])
             {
                 method: "GET",
                 headers: {
-                    'Authorization': `Bearer <${authenticatedToken}>`,
+                    'Authorization': `Bearer ${authenticatedToken}`,
                     'Content-type': 'application/json'
                      }
             }  )
