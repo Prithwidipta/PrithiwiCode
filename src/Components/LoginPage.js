@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserDetails from './UserDetails';
 
@@ -12,9 +12,10 @@ const intialFormValue = {
 export default function LoginPage() {
     const [form, setForm] = useState({ ...intialFormValue })
     const[authenticatedToken,setAuthenticatedToken]=useState("")
-    function handleInput(event) {
-            setForm({ ...form,  [event.target.name]: event.target.value })
-    
+   
+const  handleInput=(event)=>{
+           
+        setForm({ ...form, [event.target.name]: event.target.value })
     }
    
     const onSubmission = async (event) => {
@@ -31,6 +32,7 @@ export default function LoginPage() {
         
         const statusCode= await response.status
         const data = await response.json()
+        localStorage.setItem('someData', data.token);
         if (statusCode === 400) {
             alert("Invalid Email or Password")
         }
@@ -39,15 +41,19 @@ export default function LoginPage() {
             alert("Login Successful")
             window.location.href = "/userpage"
     }
-    setAuthenticatedToken(data.token)
     setForm({ ...intialFormValue })
-       
+  
     }
     
-const token= authenticatedToken
-    const RederComponent = () => {
+    useEffect(() => {
+        const items = localStorage.getItem('someData');
+        if (items) {
+            setAuthenticatedToken(items);
+        }
+      }, [])
+ const RederComponent = () => {
         return (
-            <UserDetails authenticatedToken={token} />
+            <UserDetails authenticatedToken={authenticatedToken} />
         )
     }
     
